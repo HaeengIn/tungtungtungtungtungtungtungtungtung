@@ -1,3 +1,5 @@
 프론트: HTML, CSS, Javascript
 백: Python
 DB: SQLite
+
+DB에: 번호, 제목, 글쓴이, 날짜, 내용, 댓글 등록하기

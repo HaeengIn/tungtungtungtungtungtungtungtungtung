@@ -1,11 +1,3 @@
 프론트: HTML, CSS, Javascript
 백: Python
 DB: SQLite
-
-TODO:
-
-박지원:
-
-김태정:
-
-백엔드: 

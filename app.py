@@ -11,7 +11,9 @@ def index():
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].strip()
+        if not username:
+            username = '교하고 학생'
         title = request.form['title']
         content = request.form['content']
         created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

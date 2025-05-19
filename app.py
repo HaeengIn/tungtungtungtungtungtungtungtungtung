@@ -17,8 +17,8 @@ def index():
     
     return render_template("index.html", posts=posts)
 
-@app.route('/post', methods=['GET', 'POST'])
-def post():
+@app.route('/write', methods=['GET', 'POST'])
+def write():
     if request.method == 'POST':
         username = request.form['username'].strip()
         if not username:
@@ -38,7 +38,19 @@ def post():
         conn.close()
 
         return redirect('/')
-    return render_template('post.html')
+    return render_template('write.html')
+
+@app.route('/view/<int:post_id>')
+def view(post_id):
+    conn = sqlite3.connect('db/data.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM posts WHERE id = ?", (post_id,))
+    post = cursor.fetchone()
+    conn.close()
+    if post is None:
+        return "Post not found", 404
+    
+    return render_template("view.html", post=post)
 
 if __name__ == '__main__':
     app.run(debug=True)

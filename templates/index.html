@@ -12,6 +12,14 @@
             TVS 익명 커뮤니티에 오신 것을 환영합니다!
         </label>
     </h2>
+    <ul>
+        {% for post in posts %}
+            <strong>{{ post['title'] }}</strong> <small>{{ post['created_at'] }}</small>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
     <input type="button" value="글 쓰기" onclick="location.href='post'" />
 </body>
 </html>

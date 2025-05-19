@@ -6,7 +6,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    conn = sqlite3.connect('db/data.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM posts ORDER BY created_at DESC")
+    posts = cursor.fetchall()
+
+    conn.close()
+    
+    return render_template("index.html", posts=posts)
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():

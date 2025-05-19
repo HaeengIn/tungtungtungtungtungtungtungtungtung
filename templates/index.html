@@ -17,7 +17,7 @@
     <ul>
         {% for post in posts %}
             <li>
-                <a href='/view/{{ post[0] }}'><strong>{{ post['title'] }}</strong> <small>{{ post['created_at'] }}</small></a>
+                <a href='/view/{{ post["id"] }}'><strong>{{ post['title'] }}</strong> <small>{{ post['created_at'] }}</small></a>
             </li>
         {% endfor %}
     </ul>

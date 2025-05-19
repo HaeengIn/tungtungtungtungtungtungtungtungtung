@@ -1,4 +1,14 @@
+* {
+    margin: auto;
+}
+
 ul {
     list-style-type: none;
     padding-left: 0;
+}
+
+@media (max-width: 600px) {
+    hr {
+        width: 30%;
+    }
 }

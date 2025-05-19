@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVS - 글 쓰기</title>
+    <link rel="stylesheet" href="../static/style.css" type="text/css" media="all" />
+    <title>
+        TVS - 글 쓰기
+    </title>
 </head>
 <body>
     <form action="/post" method="post">
         <input type="text" id="username" name="username" placeholder="닉네임" /><br>
         <input type="text" id="title" name="title" placeholder="제목" required /><br>
-        <textarea name="content" id="content" placeholder="여기에 글을 쓰세요 . . ." required></textarea><br>
+        <textarea name="content" id="content" placeholder="여기에 글을 쓰세요." required></textarea><br>
         <input type="submit" value="업로드">
         <input type="button" value="취소" onclick="location.href='/'" />
     </form>

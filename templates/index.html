@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../static/style.css">
     <title>
@@ -14,16 +15,16 @@
             TVS 익명 커뮤니티에 오신 것을 환영합니다!
         </label>
     </h2>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <a href='/view/{{ post["id"] }}'><strong>{{ post['title'] }}</strong> <small>{{ post['created_at'] }}</small></a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <input type="button" value="글 쓰기" onclick="location.href='write'" />
+    <div class='contents'>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href='/view/{{ post["id"] }}'><strong>{{ post['title'] }}</strong> <small>{{ post['created_at'] }}</small></a>
+                </li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <input type="button" value="글 쓰기" onclick="location.href='write'" />
+    </div>
 </body>
 </html>

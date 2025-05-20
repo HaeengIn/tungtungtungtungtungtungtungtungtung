@@ -1,5 +1,4 @@
-# tungtungtungtungtungtungtungtungtung
-sahur
+# Repository of TVS Community
 
-김태정 테스트
-Test of Fetch and Pull
+> CC BY-NC-SA 4.0<br>
+> Copyright 2025 ©️ TVS. All Rights Reserved.

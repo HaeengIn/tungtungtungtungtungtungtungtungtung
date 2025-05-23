@@ -12,7 +12,9 @@ def get_oracle_connection():
     return oracledb.connect(
         user = os.getenv('oracle_user'),
         password = os.getenv('oracle_password'),
-        dsn = os.getenv('oracle_dsn')
+        dsn = os.getenv('oracle_dsn'),
+        config_dir = os.getenv('oracle_wallet_dir'),
+        wallet_location = os.getenv('oracle_wallet_dir')
     )
 
 @app.route('/')

@@ -1,25 +1,15 @@
 from flask import Flask, render_template, request, redirect
-import oracledb
+import sqlite3
 from datetime import datetime
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
 
-def get_oracle_connection():
-    return oracledb.connect(
-        user = os.getenv('oracle_user'),
-        password = os.getenv('oracle_password'),
-        dsn = os.getenv('oracle_dsn'),
-        config_dir = os.getenv('oracle_wallet_dir'),
-        wallet_location = os.getenv('oracle_wallet_dir')
-    )
+def get_db_connection():
+    return sqlite3.connect('db/data.db')
 
 @app.route('/')
 def index():
-    conn = get_oracle_connection()
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM posts ORDER BY created_at DESC")
@@ -42,11 +32,11 @@ def write():
         content = request.form['content']
         created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        conn = get_oracle_connection()
+        conn = get_db_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-            "INSERT INTO posts (username, title, content, created_at) VALUES (:1, :2, :3, :4)",
+            "INSERT INTO posts (username, title, content, created_at) VALUES (?, ?, ?, ?)",
             (username, title, content, created_at)
         )
 
@@ -59,7 +49,7 @@ def write():
 
 @app.route('/view/<int:post_id>')
 def view(post_id):
-    conn = get_oracle_connection()
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM posts WHERE id = :1", (post_id,))
@@ -74,4 +64,4 @@ def view(post_id):
     return render_template("view.html", post=post)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)

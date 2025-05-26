@@ -29,16 +29,18 @@ def index():
 @app.route('/write', methods=['GET', 'POST'])
 def write():
     if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
         username = request.form['username'].strip()
         if not username:
             username = '교하고 학생'
         if username == 'TVS Dev Team':
-            request_password = request.form.get('이 닉네임을 사용하려면 비밀번호를 입력하세요.', '')
+            request_password = request.form.get('admin_password', None)
             admin_password = os.getenv('admin_password')
+            if request_password is None:
+                return render_template('write.html', need_password=True, username=username, title=title, content=content)
             if request_password != admin_password:
                 return "비밀번호가 일치하지 않습니다.", 403
-        title = request.form['title']
-        content = request.form['content']
         created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         conn = get_db_connection()

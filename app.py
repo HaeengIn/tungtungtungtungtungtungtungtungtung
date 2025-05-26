@@ -52,16 +52,15 @@ def view(post_id):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM posts WHERE id = :1", (post_id,))
+    cursor.execute("SELECT * FROM posts WHERE id = ?", (post_id,))
     row = cursor.fetchone()
 
     conn.close()
 
     if row is None:
-        return "Post not found", 404
-    post = {'id': row[0], 'username': row[1], 'title': row[2], 'content': row[3], 'created_at': row[4]}
+        return "Post not found", 404\
     
-    return render_template("view.html", post=post)
+    return render_template("view.html", post=row)
 
 if __name__ == '__main__':
     app.run(debug=True)

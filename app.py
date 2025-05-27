@@ -6,6 +6,8 @@ import os
 
 load_dotenv()
 
+admin_password = os.environ.get('admin_password')
+
 app = Flask(__name__)
 
 def get_db_connection():

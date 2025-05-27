@@ -39,8 +39,6 @@ def write():
             admin_password = os.getenv('admin_password')
             if request_password is None:
                 return render_template('write.html', need_password=True, username=username, title=title, content=content)
-            if request_password != admin_password:
-                return "비밀번호가 일치하지 않습니다.", 403
         created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         conn = get_db_connection()

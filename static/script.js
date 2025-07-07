@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// 1. 특수문자를 안전한 글자로 바꿔주는 함수 (XSS 보안 핵심!)
+// 1. 특수문자를 안전한 글자로 바꿔주는 함수
 function escapeHTML(str) {
   return str
     .replace(/&/g, "&amp;")   // & → &amp;
@@ -57,7 +57,7 @@ function showMessages(messages) {
     const safeName = escapeHTML(msg.name);
     const safeMessage = escapeHTML(msg.message);
 
-    // li 태그 안에 글자 넣기 (스크립트 실행 X, 안전!)
+    // li 태그 안에 글자 넣기 (스크립트 실행 X, 안전)
     li.textContent = `${safeName}: ${safeMessage}`;
 
     // 만든 글(li)을 목록에 추가하기

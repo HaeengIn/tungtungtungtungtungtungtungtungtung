@@ -4,7 +4,6 @@ import sqlite3
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-import Flask-Limiter
 
 # .env 파일 불러오기
 load_dotenv()

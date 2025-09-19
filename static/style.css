@@ -1,7 +1,16 @@
+.do-hyeon-regular {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 body {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
+    background-color: #CCCCCC; /* 배경색 추가 */
+    font-family: "Do Hyeon", sans-serif;
 }
 
 .contents {

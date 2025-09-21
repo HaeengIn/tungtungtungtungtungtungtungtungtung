@@ -3,10 +3,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from supabase import create_client, Client
-from dotenv import load_env
+from dotenv import load_dotenv
 import os, asyncio
 
-load_env()
+load_dotenv()
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -14,6 +14,25 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
 
-app.get("/")
+@app.get("/")
 def index(request: Request):
-    pass
+    response = supabase.table("ght_posts").select("*").order("id", desc=True).single().execute()
+    posts = response.data
+    return templates.TemplateResponse("index.html", {"request": request, "posts": posts})
+
+@app.get("/{id}")
+def view(request: Request, id: int):
+    response = supabase.table("ght_posts").select("*").eq("id", id).single().execute()
+    posts = response.data
+    return templates.TemplateResponse("view.html", {"request": request, "posts": posts})
+
+@app.get("/write")
+def write(request: Request):
+    return templates.TemplateResponse("write.html", {"request": request})
+
+@app.post("/write")
+def writePosts(request: Request, username: str = Form(...), title: str = Form(...), content: str = Form(...)):
+    insert = supabase.table("ght_posts").insert({"username": username, "title": title, "content": content})
+    newPosts = insert.data[0]
+    newId = insert.data["id"]
+    return RedirectResponse(url="/", status_code=303)

@@ -16,7 +16,7 @@ supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_
 
 @app.get("/")
 def index(request: Request):
-    response = supabase.table("ght_posts").select("*").order("id", desc=True).single().execute()
+    response = supabase.table("ght_posts").select("*").order("id", desc=True).execute()
     posts = response.data
     return templates.TemplateResponse("index.html", {"request": request, "posts": posts})
 

@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from supabase import create_client, Client
 from dotenv import load_dotenv
-import os, asyncio
+import os
 
 load_dotenv()
 

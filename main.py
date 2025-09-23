@@ -28,9 +28,7 @@ def write(request: Request):
 
 @app.post("/write")
 def writePosts(request: Request, username: str = Form(...), title: str = Form(...), content: str = Form(...)):
-    insert = supabase.table("ght_posts").insert({"username": username, "title": title, "content": content})
-    newPosts = insert.data[0]
-    newId = insert.data["id"]
+    supabase.table("ght_posts").insert({"username": username, "title": title, "content": content}).execute()
     return RedirectResponse(url="/", status_code=303)
 
 @app.get("/{id}")

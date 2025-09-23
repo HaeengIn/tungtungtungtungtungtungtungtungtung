@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}" type="text/css" media="all" />
     <title>
         GHT - 글 쓰기
     </title>
@@ -21,7 +21,7 @@
         <input type="submit" value="업로드">
         <input type="button" value="취소" onclick="location.href='/'" />
     </form>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', path='script.js') }}"></script>
     </div>
 </body>
 </html>

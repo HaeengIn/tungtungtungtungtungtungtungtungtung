@@ -13,8 +13,8 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 class CachedStaticFiles(StaticFiles):
     async def get_response(self, path, scope):
-        response: Response = await super().getResponse(path, scope)
-        if response.statudCode == 200:
+        response: Response = await super().get_response(path, scope)
+        if response.status_code == 200:
             response.headers["Cache-Control"] = "public, max-age=10368000, immutable"
         return response
 

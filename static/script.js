@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!form) return;
     form.addEventListener('submit', function(e) {
         var username = document.getElementById('username').value.trim();
-        if (username === 'TVS Dev Team') {
+        if (username === 'GHT Dev Team') {
             e.preventDefault();
             var request_password = prompt('이 닉네임을 사용하려면 비밀번호를 입력하세요: ');
             if (request_password === null) {

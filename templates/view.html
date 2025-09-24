@@ -16,7 +16,7 @@
         <small>작성일: {{ posts["created_at"] }}</small>
     </p>
     <p>
-        {{ posts["content"] }}
+        {{ posts["content"] | replace("\n", "<br>") | safe }}
     </p>
     <hr>
     <div class="contents">

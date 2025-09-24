@@ -2,17 +2,25 @@ from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.gzip import GZipMiddleware
 from supabase import create_client, Client
 from dotenv import load_dotenv
 from datetime import datetime
+from starlette.responses import Response
 import os
 
 load_dotenv()
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+class CachedStaticFiles(StaticFiles):
+    async def get_response(self, path, scope):
+        response: Response = await super().getResponse(path, scope)
+        if response.statudCode == 200:
+            response.headers["Cache-Control"] = "public, max-age=10368000, immutable"
+        return response
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", CachedStaticFiles(directory="static"), name="static")
+app.add_middleware(GZipMiddleware, minimum_size=500)
 templates = Jinja2Templates(directory="templates")
 
 supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))

@@ -5,18 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../static/style.min.css" type="text/css" media="all">
-    <title>
-        GHT - 홈
-    </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <title>GHT - 홈</title>
 </head>
 <body>
     <h1>
-        <label>
-            GHT 익명 커뮤니티에 오신 것을 환영합니다!
-        </label>
+        <label>GHT 익명 커뮤니티에 오신 것을 환영합니다!</label>
     </h1>
     <div class='contents'>
         <ul>
@@ -27,7 +20,8 @@
             {% endfor %}
         </ul>
         <hr>
-        <input type="button" value="글 쓰기" onclick="location.href='write'" />
+        <button onclick="location.href='/write'">글 쓰기</button>
+
     </div>
     <script src="../static/script.min.js"></script>
 </body>

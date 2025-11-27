@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!form) return;
     form.addEventListener('submit', function(e) {
         var username = document.getElementById('username').value.trim();
-        if (username === 'GHT Dev Team') {
+        var protected_user_names = ['GHT Dev Team', 'HaeengIn'];
+
+        if (protected_user_names.includes(username)) {
             e.preventDefault();
             var request_password = prompt('이 닉네임을 사용하려면 비밀번호를 입력하세요: ');
             if (request_password === null) {
